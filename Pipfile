@@ -11,6 +11,7 @@ django = "*"
 django-cors-headers = "*"
 psycopg2 = "*"
 pillow = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.8"
