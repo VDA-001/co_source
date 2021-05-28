@@ -9,6 +9,9 @@ class CustomUser(AbstractUser):
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
     phone = models.CharField(max_length=15,blank = True,null=True)
+    is_volunteer = models.BooleanField()
+    country = models.CharField(max_length=30,null=False)
+    region = models.CharField(max_length=30,null=False)
 
     objects = UserManager()
 
