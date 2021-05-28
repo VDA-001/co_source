@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'api',
+    'api.user',
 ]
 
 MIDDLEWARE = [
@@ -132,6 +134,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 CORS_ORIGIN_ALLOW_ALL = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = "user.CustomUser"
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
