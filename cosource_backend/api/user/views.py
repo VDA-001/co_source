@@ -3,11 +3,12 @@ from rest_framework.decorators import permission_classes
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
 from django.shortcuts import get_object_or_404
-from .models import CustomUser
-from .serializers import UserSerializer
+from .models import CustomUser,Volunteer
+from .serializers import UserSerializer,VolunteerSerializer
 from django.contrib.auth import get_user_model,login,logout
 from django.contrib.auth.hashers import check_password
 from django.views.decorators.csrf import csrf_exempt
+from api.post.models import Post
 import re
 import json
 import random
@@ -81,7 +82,28 @@ def signout(request, id):
     except UserModel.DoesNotExist:
         return JsonResponse({'error':'Invalid user ID'})
 
-    return JsonResponse({'success':'Logout succes'})
+    return JsonResponse({'success':'Logout success'})
+
+def createVolunteer(request,user_id):
+    user_ = get_object_or_404(CustomUser,pk=user_id)
+    volunteer = Volunteer(user = user_)
+    volunteer.save()
+    user_.is_volunteer = True
+    user_.save()
+    return JsonResponse({'success':'Successfully added as volunteer'})
+
+def assignPostToVolunteer(request,volunteer_id,post_id):
+    post = get_object_or_404(Post,pk=post_id)
+    volunteer = get_object_or_404(Volunteer,pk=volunteer_id)
+    post.assigned=True
+    volunteer.post = post
+    volunteer.save()
+    post.save()
+    return JsonResponse({'success':'Successfully assigned post to volunteer'})
+
+class VolunteerViewSet(viewsets.ModelViewSet):
+    queryset = Volunteer.objects.all().order_by('id')
+    serializer_class = VolunteerSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
     #Allowing anyone permission for this viewset

@@ -8,4 +8,4 @@ class PostSerializer(serializers.ModelSerializer):
     user=UserSerializer(read_only=True)
     class Meta:
         model = Post
-        fields = ('user','description','image','phone','link','country','region','assigned','validated')
+        fields = ('id','user','description','image','phone','link','country','region','assigned','validated')

@@ -2,7 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
 from django.http import JsonResponse
 from rest_framework.decorators import authentication_classes, permission_classes
-from .models import CustomUser
+from .models import CustomUser,Volunteer
 
 class BriefUserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -24,3 +24,9 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         #* Getting password as additional argument which is not explicitly declared
         extra_kwargs = {'password': {'write_only': True}}
         fields = ('id','email','username','name','password','phone','is_active','is_staff','is_superuser')
+
+class VolunteerSerializer(serializers.ModelSerializer):
+    user=UserSerializer(read_only=True)
+    class Meta:
+        model = Volunteer
+        fields = ('id','user','post','status')

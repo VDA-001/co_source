@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser,UserManager
+from api.post.models import Post
 
 class CustomUser(AbstractUser):
     name = models.CharField(max_length=50, default='Anonymous')
@@ -17,3 +18,9 @@ class CustomUser(AbstractUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+
+class Volunteer(models.Model):
+    user = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE,blank=True,null=True)
+    status = models.BooleanField(default=None,blank=True,null=True)
+    credit = models.SmallIntegerField(blank=True, null=True)

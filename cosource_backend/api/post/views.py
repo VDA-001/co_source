@@ -1,6 +1,7 @@
 from .models import Post
 from django.http import JsonResponse
 from api.user.models import CustomUser
+from api.post.models import Post
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
 from .serializers import PostSerializer
@@ -16,8 +17,8 @@ def post(request,id):
         link_ = request.POST.get('link')
         country_ = request.POST.get('country')
         region_ =request.POST.get('region')
-        assigned_=request.POST.get('assigned')
-        validated_ = request.POST.get('validated')
+        assigned_=False
+        validated_ = False
         user_ = get_object_or_404(CustomUser,pk=id)
 
         post_obj=Post(
@@ -32,7 +33,7 @@ def post(request,id):
             assigned=assigned_
         )
         post_obj.save()
-        return JsonResponse({'success':'Created'})
+        return JsonResponse({'success':'Successfully created the post'})
     else:
         return JsonResponse({'error':'Accepting only POST request'})
 
