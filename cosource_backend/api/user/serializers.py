@@ -29,4 +29,4 @@ class VolunteerSerializer(serializers.ModelSerializer):
     user=UserSerializer(read_only=True)
     class Meta:
         model = Volunteer
-        fields = ('id','user','post','status')
+        fields = ('id','user','post')

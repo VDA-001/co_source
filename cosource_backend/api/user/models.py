@@ -22,5 +22,4 @@ class CustomUser(AbstractUser):
 class Volunteer(models.Model):
     user = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE,blank=True,null=True)
-    status = models.BooleanField(default=None,blank=True,null=True)
-    credit = models.SmallIntegerField(blank=True, null=True)
+    credit = models.SmallIntegerField(default=0)

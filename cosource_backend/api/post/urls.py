@@ -9,5 +9,7 @@ router.register(r'',views.PostViewSet)
 
 urlpatterns = [
     path('create-post/<int:id>/',views.post, name='Post'),
+    path('submit-video-response/<int:volunteer_id>/<int:post_id>/',views.SubmitVideo,name="SubmitVideo"),
+    path('submit-detail-response/<int:volunteer_id>/<int:post_id>/',views.SubmitDetail,name="SubmitDetail"),
     path('',include(router.urls))
 ]
