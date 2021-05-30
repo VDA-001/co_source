@@ -1,0 +1,29 @@
+*{
+    background-color:white;
+}
+.text{
+    width:400px;
+    margin:0 auto;
+}
+.form-label{
+    font-size:20px;
+    
+}
+.text-center{
+    color:#5830e0;
+}
+.btn{
+    background-color:#8262ec;
+    color:white;
+    font-weight:500
+}
+.image{
+    width:600px;
+    padding-top:150px;
+}
+@media (max-width:600px){
+    .image{
+        width:350px;
+        margin:0 auto;
+    }
+}
