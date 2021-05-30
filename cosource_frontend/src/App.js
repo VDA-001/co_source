@@ -14,8 +14,9 @@ import Post from "./Components/Post";
 
 function App() {
 	return (
-		<Post />
+		
 		<div className='App'>
+		<Post />
 			<Router>
 				<Navbar />
 				<Switch>
